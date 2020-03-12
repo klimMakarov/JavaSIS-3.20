@@ -2,21 +2,33 @@ package pro.it.sis.javacourse;
 
 public class Target {
 
-    public int getPhysicalDamage() {
-        return physicalDamage;
+    private String mobType;
+    private int hitPoints;
+
+    public int getHitPoints(){
+        return hitPoints;
     }
 
-    public int getFireDamage() {
-        return fireDamage;
+    public String getMobType(){
+        return mobType;
     }
 
-    public int getIceDamage() {
-        return iceDamage;
+    public Target(String mobType, int hp){
+        this.mobType = mobType;
+        this.hitPoints = hp;
+    }
+}
+
+class MagicTarget extends Target{
+
+    private String specialEffect;
+
+    public MagicTarget(String name, int hp, String specialEffect){
+        super(name, hp);
+        this.specialEffect = specialEffect;
     }
 
-    private int physicalDamage;
-
-    private int fireDamage;
-
-    private int iceDamage;
+    public String getSpecialEffect(){
+        return specialEffect;
+    }
 }
