@@ -7,15 +7,19 @@ public class Unit1 {
 
 
     public static void main(String[] args) {
-        String result = revertString();
+        String result = revertString(INPUT_STRING);
         checkResult(result);
     }
 
     /**
      * При реализации метода нельзя использовать метод reverse() из класса StringBuilder
      */
-    private static String revertString() {
-        return "";
+    private static String revertString(String someString) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = someString.length() - 1; i >= 0; i--){
+            sb.append(someString.charAt(i));
+        }
+        return sb.toString();
     }
 
     private static void checkResult(String result) {
