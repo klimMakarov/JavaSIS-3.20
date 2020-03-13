@@ -17,6 +17,18 @@ public class Target {
         this.mobType = mobType;
         this.hitPoints = hp;
     }
+
+    public void takeHit(Weapon weapon){
+        int hp = getHitPoints();
+        hp -= weapon.getDamage() + weapon.getSpecialDamage();
+        if(hp <= 0) {
+            System.out.printf("%s is dead!\n", getMobType());
+        }
+        else {
+            System.out.printf("%s has %d hp left!\n", getMobType(), hp);
+        }
+        System.out.println("---------------------------");
+    }
 }
 
 class MagicTarget extends Target{
@@ -30,5 +42,26 @@ class MagicTarget extends Target{
 
     public String getSpecialEffect(){
         return specialEffect;
+    }
+
+    @Override
+    public void takeHit(Weapon weapon) {
+        int hp = getHitPoints();
+        hp -= weapon.getDamage();
+        
+        if(specialEffect != weapon.getSpecialEffect()){
+            System.out.printf("%s deals additional %s damage!\n", weapon.getName(), weapon.getSpecialEffect());
+            hp -= weapon.getSpecialDamage();
+        }
+        else {
+            System.out.printf("%s has immunity to %s!\n", getMobType(), getSpecialEffect());
+        }
+        if(hp <= 0) {
+            System.out.printf("%s is dead!\n", getMobType());
+        }
+        else {
+            System.out.printf("%s has %d hp left!\n", getMobType(), hp);
+        }
+        System.out.println("---------------------------");
     }
 }

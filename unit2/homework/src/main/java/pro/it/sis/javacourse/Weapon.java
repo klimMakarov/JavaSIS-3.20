@@ -13,24 +13,27 @@ public class Weapon {
         this.specialDamage = specialDamage;
     }
 
-    public void hit(Target target) {
-        int hp = target.getHitPoints();
-        hp -= damage;
+    public String getName() {
+        return name;
     }
-    public void hit(MagicTarget target) {
-        System.out.printf("You hitting %s with %s\n", target.getMobType(), name);
-        int hp = target.getHitPoints();
-        hp -= damage;
-        if(specialEffect != target.getSpecialEffect()){
-            hp -= specialDamage;
-        }
-        else {
-            System.out.printf("%s has immunity to %s!\n", target.getMobType(), target.getSpecialEffect());
-        }
 
-        if(hp <= 0) System.out.printf("%s is dead!\n", target.getMobType());
-        else System.out.printf("%s has %d hp left!\n", target.getMobType(), hp);
-
-        System.out.println("---------------------------");
+    public int getDamage() {
+        return damage;
     }
+
+    public String getSpecialEffect() {
+        return specialEffect;
+    }
+
+    public int getSpecialDamage() {
+        return specialDamage;
+    }
+
+    public void hit (Target target){
+        target.takeHit(this);
+    }
+    public void hit (MagicTarget target){
+        target.takeHit(this);
+    }
+
 }
