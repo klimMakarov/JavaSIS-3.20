@@ -29,9 +29,6 @@ public class Weapon {
         return specialDamage;
     }
 
-    public void hit (Target target){
-        target.takeHit(this);
-    }
     public void hit (MagicTarget target){
         target.takeHit(this);
     }
